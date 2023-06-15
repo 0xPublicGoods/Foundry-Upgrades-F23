@@ -2,13 +2,15 @@
 
 pragma solidity ^0.8.18;
 
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+
 /**
  * @title BoxV2 Contract
  * @author 0xPublicGoods
  * @notice BoxV2 Contract UUPS Proxy
  * @dev BoxV2 Contract
  */
-contract BoxV2 {
+contract BoxV2 is UUPSUpgradeable {
     uint256 internal number;
 
     function setNumber(uint256 _number) external {}
@@ -20,4 +22,6 @@ contract BoxV2 {
     function version() external pure returns (uint256) {
         return 2;
     }
+
+    function _authorizeUpgrade(address newImplementation) internal override {}
 }
